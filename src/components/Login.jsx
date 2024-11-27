@@ -3,15 +3,13 @@ import Header from './Header'
 import { checkValidateData } from '../utils/validate.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase"
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
 const Login = () => {
   const [signinform, setsigninform] = useState(true)
   const [errormessage, seterrormessage] = useState(null);
-  const navigate = useNavigate();
-  const Dispatch = useDispatch();
+   const Dispatch = useDispatch();
 
   //form validation
   const email = useRef(null)
@@ -38,7 +36,6 @@ const Login = () => {
               email: email,
                displayName: displayName, 
                photoURL: photoURL }))
-            navigate("/Browse")
           }).catch((error) => {
             seterrormessage(error)
           });
@@ -56,7 +53,7 @@ const Login = () => {
           // Signed in 
           const user = userCredential.user;
           console.log("signed In", user)
-          navigate("/Browse")
+
         })
         .catch((error) => {
           const errorCode = error.code;
