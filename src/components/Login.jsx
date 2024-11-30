@@ -4,6 +4,7 @@ import { checkValidateData } from '../utils/validate.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase"
 import { useDispatch } from 'react-redux';
+import { USER_AVATAR } from '../utils/constant.js';
 
 
 const Login = () => {
@@ -29,7 +30,7 @@ const Login = () => {
           // Signed up 
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: email.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+            displayName: email.current.value, photoURL: USER_AVATAR
           }).then(() => {
             const { uid, email, displayName, photoURL } = auth.currentUser;
             Dispatch(addUser({ uid: uid, 
